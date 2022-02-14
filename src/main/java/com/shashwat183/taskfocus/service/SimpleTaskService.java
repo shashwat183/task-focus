@@ -1,6 +1,7 @@
 package com.shashwat183.taskfocus.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import com.shashwat183.taskfocus.dao.TaskDAO;
@@ -24,18 +25,22 @@ public class SimpleTaskService implements TaskService {
     }
 
     @Override
-    public Task getTask(UUID id) {
-        return taskDAO.getById(id);
+    public Optional<Task> getTask(UUID id) {
+        return taskDAO.findById(id);
     }
 
     @Override
-    public void saveTask(Task task) {
-        taskDAO.save(task);
+    public List<Task> getTasksByName(String taskName) {
+        return taskDAO.findByTaskName(taskName);
+    }
+
+    @Override
+    public Task saveTask(Task task) {
+        return taskDAO.save(task);
     }
 
     @Override
     public void deleteTask(UUID id) {
         taskDAO.deleteById(id);
     }
-    
 }

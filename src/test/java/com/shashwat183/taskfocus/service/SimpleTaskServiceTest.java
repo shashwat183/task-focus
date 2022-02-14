@@ -2,6 +2,7 @@ package com.shashwat183.taskfocus.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import com.shashwat183.taskfocus.dao.TaskDAO;
@@ -55,10 +56,10 @@ class SimpleTaskServiceTest {
     @Test
     void getTask() {
         UUID id = UUID.randomUUID();
-        Task testTask = new Task(id, "test_task_1", "test_desc", 3);
-        Mockito.when(taskDAO.getById(id)).thenReturn(testTask);
-        Task reponseTask = simpleTaskService.getTask(id);
-        assertThat(reponseTask, is(equalTo(testTask)));
+        Optional<Task> testTask = Optional.of(new Task(id, "test_task_1", "test_desc", 3));
+        Mockito.when(taskDAO.findById(id)).thenReturn(testTask);
+        Task reponseTask = simpleTaskService.getTask(id).get();
+        assertThat(reponseTask, is(equalTo(testTask.get())));
     }
 
     @Test
