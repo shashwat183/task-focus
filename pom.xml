@@ -14,7 +14,7 @@
 	<name>task-focus</name>
 	<description>A Java Spring Boot based Microservice to Create and Manage Tasks.</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
